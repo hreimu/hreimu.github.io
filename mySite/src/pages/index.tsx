@@ -4,9 +4,11 @@ import {initalState} from "@/pages/state";
 import {useReducer, createContext, useMemo} from "react";
 import {reducer} from './reducer'
 import {Directory} from "@/pages/mainArticle/directory";
+import {Home} from "@/pages/home";
 import './mainArticle/index.less'
 import {PushType} from './types'
 import {Main} from "@/pages/mainArticle";
+import {Move} from "@/pages/component/move";
 
 const {Sider, Content} = Layout
 
@@ -18,12 +20,12 @@ export default function IndexPage() {
   const renderComponent = useMemo(
     () => () => {
       switch (state?.path) {
-        case 'directory':
+        case 'react':
           return <Directory/>
         case 'article':
           return <Main/>
         default:
-          return
+          return <Home/>
       }
     }, [state])
 
@@ -37,6 +39,7 @@ export default function IndexPage() {
           {renderComponent()}
         </Content>
       </Layout>
+      <Move/>
     </Context.Provider>
   );
 }
